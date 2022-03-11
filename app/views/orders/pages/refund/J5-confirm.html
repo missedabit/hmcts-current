@@ -1,0 +1,20 @@
+{% extends "../../layoutccd.html" %}
+
+{% block pageTitle %}
+    Case details
+{% endblock %}
+
+
+{% set mainClasses = "govuk-main-wrapper--l" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukPanel({
+        titleText: "Notification sent",
+        html: "<p class=\"govuk-body\" style=\"color: white\"><strong>Refund reference: RF-8368-2367-1858-4562</strong></p>"
+      }) }}
+    </div>
+  </div>
+{% endblock %}

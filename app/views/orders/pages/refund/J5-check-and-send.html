@@ -1,0 +1,150 @@
+{% extends "../../layoutccd.html" %}
+
+{% block pageTitle %}
+    Case details
+{% endblock %}
+
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "#"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">Check your answers</h1>
+
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Decision"
+            },
+            value: {
+              text: "Approve"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          } if false,
+          {
+            key: {
+              text: ""
+            },
+            value: {
+              text: ""
+            }
+          } if data['refund'] == 'adHoc',
+          {
+            key: {
+              text: "Refund reference"
+            },
+            value: {
+              text: "RF-1324-6846-2454-5445"
+            }
+          },
+          {
+            key: {
+              text: "Send via"
+            },
+            value: {
+              html: "<strong>Post</strong> <br>The Castel, Windsor Road, Great Missenden, HP10 9OL"
+            },
+            actions: {
+              items: [
+                {
+                  href: "J5-partial-refunds-amend-address",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Payment status"
+            },
+            value: {
+              text: data['paymentdetailsstatus'] or 'Success'
+            }
+          } if data['state'] == 'remission' or data['refund'] == 'remission',
+          {
+            key: {
+              text: "Fee"
+            },
+            value: {
+              text: "FEE0387 - Application for divorce (£550.00)"
+            }
+          } if data['state'] == 'remission' or data['refund'] == 'remission',
+          {
+            key: {
+              text: "Help with fees or remission reference"
+            },
+            value: {
+              html: 'HWF-A1B-23C'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          } if data['state'] == 'remission' or data['refund'] == 'remission',
+          {
+            key: {
+              text: 'Remission amount'
+            },
+            value: {
+              html: '£' + data['amount'] if data['how-much'] == 'no' and data['amount'] else '£550.00'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          } if data['state'] == 'remission'
+
+        ]
+      }) }}
+
+        <div class="govuk-button-group">
+
+
+            {{ govukButton({
+              text: "Previous",
+              href: '',
+              classes: "govuk-button--secondary"
+            }) }}
+            {{ govukButton({
+              text: "Send notification",
+              href: 'J5-confirm',
+              classes: "govuk-button"
+            }) }}
+        </div>
+
+        <p>
+           <a href="">Cancel</a>
+        </p>
+
+
+    </div>
+  </div>
+{% endblock %}

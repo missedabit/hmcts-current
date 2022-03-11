@@ -1,0 +1,46 @@
+{% extends "../../layout-ways-to-pay.html" %}
+
+{% block pageTitle %}
+    How do you want to pay
+{% endblock %}
+
+{% block content %}
+<div>
+  <a href="payment-check-before-you-pay-2" class="govuk-back-link">Back</a>
+  <div class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+        <h1 class="govuk-fieldset__heading">
+          How do you want to pay?
+        </h1>
+      </legend>
+      <div class="govuk-radios" data-module="govuk-radios">
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="method-of-payment" name="method-of-payment" type="radio" value="bank-account-or-building-society" checked>
+          <label class="govuk-label govuk-radios__label" for="method-of-payment">
+            Pay online
+          </label>
+        </div>
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="method-of-payment-2" name="method-of-payment" type="radio" value="non-uk-bank-account">
+          <label class="govuk-label govuk-radios__label" for="method-of-payment-2">
+            Pay another way
+          </label>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+  <div class="govuk-button-group">
+    {{ govukButton({
+      text: "Continue",
+      href: '',
+      classes: "govuk-button"
+    }) }}
+    {{ govukButton({
+      text: "Cancel",
+      href: 'payment-pay-online-exit-message-2',
+      classes: "govuk-button--secondary"
+    }) }}
+  </div>
+</div>
+{% endblock %}

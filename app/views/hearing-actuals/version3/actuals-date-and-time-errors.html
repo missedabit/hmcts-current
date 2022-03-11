@@ -1,0 +1,181 @@
+{% extends "../layout-xui.html" %}
+
+{% block pageTitle %}
+Hearings management
+{% endblock %}
+
+{% block beforeContent %}
+<a class="govuk-back-link" href="#" onclick="goBack();">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" data-module="govuk-error-summary">
+    <h2 class="govuk-error-summary__title" id="error-summary-title">
+        There is a problem
+    </h2>
+    <div class="govuk-error-summary__body">
+        <ul class="govuk-list govuk-error-summary__list">
+            <li>
+                <a href="#startError">Start time must be before finish time</a>
+            </li>
+            <li>
+                <a href="#pauseError">Pause time must be between the hearing start and finish times</a>
+            </li>
+            <li>
+                <a href="#resumeError">Enter a resume time</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <span class="govuk-caption-l">Jane Smith vs DWP</span>
+        <h1 class="govuk-heading-l">
+            Hearing timings
+        </h1>
+        <br />
+
+        <!-- Start and end time -->
+        <div class="govuk-form-group govuk-form-group--error">
+            <label class="govuk-label govuk-!-font-weight-bold" for="startTime">
+                Start time
+            </label>
+<!--                <div id="startHint" class="govuk-hint">-->
+<!--                    For example, 13:00-->
+<!--                </div>-->
+            <p id="startError" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Start time must be before finish time
+            </p>
+            <input class="govuk-input govuk-date-input__input govuk-input--width-5 govuk-input--error" id="startTime" name="start-time" type="text" value="16:00" />
+        </div>
+        <div class="govuk-form-group">
+            <label class="govuk-label govuk-!-font-weight-bold" for="endTime">
+                Finish time
+            </label>
+<!--                <div id="endHint" class="govuk-hint">-->
+<!--                    For example, 14:30-->
+<!--                </div>-->
+            <input class="govuk-input govuk-date-input__input govuk-input--width-5" id="endTime" name="end-time" type="text" value="15:00" />
+        </div>
+            <br />
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                        <h1 class="govuk-fieldset__heading">
+                            Do you need to record times the hearing was paused?
+                        </h1>
+                    </legend>
+<!--                    <div id="changed-name-hint" class="govuk-hint">-->
+<!--                        This includes changing your last name or spelling your name differently.-->
+<!--                    </div>-->
+                    <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="pauseResumeYes" name="pause-resume" type="radio" value="yes" checked>
+                            <label class="govuk-label govuk-radios__label" for="pauseResumeYes">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="pauseResumeNo" name="pause-resume" type="radio" value="no">
+                            <label class="govuk-label govuk-radios__label" for="pauseResumeNo">
+                                No
+                            </label>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+            <div id="pauseResumeContainer" class="govuk-form-group--error">
+                <div class="govuk-form-group">
+                    <label class="govuk-label govuk-!-font-weight-bold" for="endTime">
+                        Pause time
+                    </label>
+                    <div id="endHint" class="govuk-hint">
+                        For example, 13:35
+                    </div>
+                    <p id="pauseError" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span> Pause time must be between the hearing start and finish times
+                    </p>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-5 govuk-input--error" id="pause-time" name="pause-time" type="text" value="11:20" />
+                </div>
+                <div class="govuk-form-group">
+                    <label class="govuk-label govuk-!-font-weight-bold" for="endTime">
+                        Resume time
+                    </label>
+                    <div id="endHint" class="govuk-hint">
+                        For example, 13:55
+                    </div>
+                    <p id="resumeError" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span> Enter a resume time
+                    </p>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-5 govuk-input--error" id="resume-time" name="resume-time" type="text" />
+                </div>
+            </div>
+
+<!--        <div class="govuk-form-group govuk-!-margin-bottom-0" id="newPauseTime" style="display:none;">-->
+<!--            <label class="govuk-label govuk-!-font-weight-bold" for="endTime">-->
+<!--                Pause time-->
+<!--            </label>-->
+<!--            <div id="endHint" class="govuk-hint">-->
+<!--                For example, 13:30-->
+<!--            </div>-->
+<!--            <input class="govuk-input govuk-date-input__input govuk-input&#45;&#45;width-5" id="endTime" name="end-time" type="text" value="14:00" />-->
+<!--            <button class="govuk-button hmcts-button&#45;&#45;secondary" data-module="govuk-button" id="removePauseBtn">-->
+<!--                Remove-->
+<!--            </button>-->
+<!--        </div>-->
+<!--        <div class="govuk-form-group govuk-!-margin-bottom-0" id="newPauseTime" style="display:none;">-->
+<!--            <label class="govuk-label govuk-!-font-weight-bold" for="endTime">-->
+<!--                Resume time-->
+<!--            </label>-->
+<!--            <div id="endHint" class="govuk-hint">-->
+<!--                For example, 13:55-->
+<!--            </div>-->
+<!--            <input class="govuk-input govuk-date-input__input govuk-input&#45;&#45;width-5" id="endTime" name="end-time" type="text" value="14:00" />-->
+<!--            <button class="govuk-button hmcts-button&#45;&#45;secondary" data-module="govuk-button" id="removePauseBtn">-->
+<!--                Remove-->
+<!--            </button>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <button class="govuk-button hmcts-button&#45;&#45;secondary govuk-!-margin-bottom-6" data-module="govuk-button" id="addPauseTimeBtn">-->
+<!--                Add more pause & resume times-->
+<!--            </button>-->
+<!--        </div>-->
+
+        <br />
+
+
+            <button class="govuk-button primary" data-module="govuk-button">
+                Save and continue
+            </button>
+
+        </div>
+    </div>
+
+<script>
+
+  // Pause and resume radio - display toggle
+
+  var pauseResumeYes = document.getElementById('pauseResumeYes')
+  var pauseResumeNo = document.getElementById('pauseResumeNo')
+  var pauseResumeContainer = document.getElementById('pauseResumeContainer')
+
+  pauseResumeYes.addEventListener('click', showHidePauseResumeContainer)
+  pauseResumeNo.addEventListener('click', showHidePauseResumeContainer)
+
+  function showHidePauseResumeContainer(){
+    if (pauseResumeYes.checked) {
+      console.log('fsfds')
+      pauseResumeContainer.style.display = 'block'
+    } else {
+      pauseResumeContainer.style.display = 'none'
+    }
+  }
+
+  function goBack() {
+    window.history.back();
+  }
+</script>
+
+{% endblock %}

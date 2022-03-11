@@ -1,0 +1,119 @@
+{% extends "../../layout-xui.html" %}
+{% block pageTitle %}
+  Case details
+{% endblock %}
+{% block content %}
+
+<div style="min-width: 960px; max-width: 1860px;  margin: 0 30px;">
+  <h1 class="govuk-heading-l">Issue refund</h1>
+  <h2 class="govuk-heading-m">Case reference: 4692-3164-5845-4819</h2>
+  <span id="how-contacted-conditional-hint" class="govuk-hint">
+    Payment reference: RC-8368-2367-1858-4562
+  </span>
+  <h3 class="govuk-heading-s">Select fees to be refunded</h3>
+  <!---TABLE--->
+  <div class="govuk-!-margin-top-3">
+    <table class="govuk-table  govuk-!-margin-bottom-2">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header" scope="col" style="width: 40px;">Select</th>
+          <th class="govuk-table__header" scope="col" style="width: 250px;">Fee description</th>
+          <th class="govuk-table__header" scope="col" style="width: 60px; text-align: left;">Fee amount</th>
+          <th class="govuk-table__header" scope="col" style="width: 60px; text-align: left;">Total paid</th>
+          <th class="govuk-table__header" scope="col" style="width: 100px;">Quantity</th>
+          <th class="govuk-table__header" scope="col" style="width: 100px;">Amount to refund</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes govuk-checkboxes--large" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="item-1" name="organisation" type="checkbox" value="J2-partial-refunds-4" onchange="document.location.href=this.value">
+                <label class="govuk-label govuk-checkboxes__label" for="item-1">
+                  <span style=display:none>Select</span>
+                </label>
+              </div>
+            </div>
+          </td>
+          <td class="govuk-table__cell">Personal Application for grant of Probate</td>
+          <td class="govuk-table__cell"  style="text-align: left;">£550.00</td>
+          <td class="govuk-table__cell"  style="text-align: left;">£550.00</td>
+          <td class="govuk-table__cell"  style="text-align: left;">
+            <label class="govuk-label govuk-label--l govuk-visually-hidden" for="event-name">
+              How many do you need to refund?
+            </label>
+            <input class="govuk-input govuk-input--width-4" id="event-name" name="event-name" type="text" disabled value="">
+          </td>
+          <td class="govuk-table__cell" scope="row" style="text-align: center, margin-left:0px;">
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-label--m govuk-visually-hidden" for="amount">
+                How much do you need to refund?
+              </label>
+              <div id="amount-currency" class="govuk-visually-hidden">in pounds</div>
+              <div class="hmcts-currency-input">
+                <div class="hmcts-currency-input__symbol" aria-hidden="true">£</div>
+                <input class="govuk-input govuk-input--width-10" id="amount" name="amount" type="text" aria-describedby="amount-currency " pattern="[0-9]*" disabled>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes govuk-checkboxes--large" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="item-1" name="organisation" type="checkbox" value="J2-partial-refunds" onchange="document.location.href=this.value" checked>
+                <label class="govuk-label govuk-checkboxes__label" for="item-1">
+                  <span style=display:none>Select</span>
+                </label>
+              </div>
+            </div>
+          </td>
+          <td class="govuk-table__cell">Copy of a document (for each copy) x 4</td>
+          <td class="govuk-table__cell"  style="text-align: left;">£1.50</td>
+          <td class="govuk-table__cell"  style="text-align: left;">£6.00</td>
+          <td class="govuk-table__cell"  style="text-align: left;">
+            <label class="govuk-label govuk-label--l govuk-visually-hidden" for="event-name">
+              How many do you need to refund?
+            </label>
+            <input class="govuk-input govuk-input--width-4" style="text-align: center;" id="event-name" name="event-name" type="text" value="4">
+          </td>
+          <td class="govuk-table__cell" scope="row" style="text-align: center, margin-left:0px;">
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-label--m govuk-visually-hidden" for="amount">
+                How much do you need to refund?
+              </label>
+              <div id="amount-currency" class="govuk-visually-hidden">in pounds</div>
+              <div class="hmcts-currency-input">
+                <div class="hmcts-currency-input__symbol" aria-hidden="true">£</div>
+                <input class="govuk-input govuk-input--width-10" id="amount" name="amount" type="text" aria-describedby="amount-currency " pattern="[0-9]*" value="6.00">
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="govuk-button-group">
+    {{ govukButton({
+      text: "Previous",
+      href: '/orders/pages/J2-paymenthistorydetails',
+      classes: "govuk-button--secondary"
+    }) }}
+    {{ govukButton({
+      href: 'J2-reason',
+      text: "Continue"
+    }) }}
+  </div>
+  <p>
+    <a href="/orders/pages/J2-paymenthistorydetails">Cancel</a>
+  </p>
+</div>
+<form method=""  action="#" class="for4" style=" float: left; margin-top: 60px;">
+  <p style="margin-bottom: 0px;">Select to show veriation</p>
+  <select size="1" name="hop" style="height:25px;" onchange="document.location.href=this.value">
+    <option selected value="">Select an option</option>
+    <option value="partial-refunds-btn-disabled">Button disabled - no item selected</option>
+  </select>
+</form>
+{% endblock %}
